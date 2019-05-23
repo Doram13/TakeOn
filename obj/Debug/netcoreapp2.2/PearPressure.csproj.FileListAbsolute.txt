@@ -1,0 +1,14 @@
+C:\Users\doram\source\repos\PearPressure\bin\Debug\netcoreapp2.2\PearPressure.deps.json
+C:\Users\doram\source\repos\PearPressure\bin\Debug\netcoreapp2.2\PearPressure.runtimeconfig.json
+C:\Users\doram\source\repos\PearPressure\bin\Debug\netcoreapp2.2\PearPressure.runtimeconfig.dev.json
+C:\Users\doram\source\repos\PearPressure\bin\Debug\netcoreapp2.2\PearPressure.dll
+C:\Users\doram\source\repos\PearPressure\bin\Debug\netcoreapp2.2\PearPressure.pdb
+C:\Users\doram\source\repos\PearPressure\obj\Debug\netcoreapp2.2\PearPressure.csprojAssemblyReference.cache
+C:\Users\doram\source\repos\PearPressure\obj\Debug\netcoreapp2.2\PearPressure.csproj.CoreCompileInputs.cache
+C:\Users\doram\source\repos\PearPressure\obj\Debug\netcoreapp2.2\PearPressure.RazorAssemblyInfo.cache
+C:\Users\doram\source\repos\PearPressure\obj\Debug\netcoreapp2.2\PearPressure.RazorAssemblyInfo.cs
+C:\Users\doram\source\repos\PearPressure\obj\Debug\netcoreapp2.2\PearPressure.AssemblyInfoInputs.cache
+C:\Users\doram\source\repos\PearPressure\obj\Debug\netcoreapp2.2\PearPressure.AssemblyInfo.cs
+C:\Users\doram\source\repos\PearPressure\obj\Debug\netcoreapp2.2\PearPressure.RazorTargetAssemblyInfo.cache
+C:\Users\doram\source\repos\PearPressure\obj\Debug\netcoreapp2.2\PearPressure.dll
+C:\Users\doram\source\repos\PearPressure\obj\Debug\netcoreapp2.2\PearPressure.pdb
