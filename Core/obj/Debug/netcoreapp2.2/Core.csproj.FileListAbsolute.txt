@@ -1,6 +1,0 @@
-C:\Users\doram\source\repos\Core\bin\Debug\netcoreapp2.2\Core.deps.json
-C:\Users\doram\source\repos\Core\bin\Debug\netcoreapp2.2\Core.dll
-C:\Users\doram\source\repos\Core\obj\Debug\netcoreapp2.2\Core.csprojAssemblyReference.cache
-C:\Users\doram\source\repos\Core\obj\Debug\netcoreapp2.2\Core.csproj.CoreCompileInputs.cache
-C:\Users\doram\source\repos\Core\obj\Debug\netcoreapp2.2\Core.AssemblyInfoInputs.cache
-C:\Users\doram\source\repos\Core\obj\Debug\netcoreapp2.2\Core.AssemblyInfo.cs
