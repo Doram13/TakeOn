@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TakeOnCore.Models;
 
+
 namespace TakeOnFront
 {
     public class Startup
@@ -35,17 +36,20 @@ namespace TakeOnFront
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddHttpContextAccessor();
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUser, IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddDefaultTokenProviders()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=asp-TakeOn.Dev;Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddDbContext<ApplicationDbContext>
+                (options => options.UseSqlServer(connection));
+
+            services.AddHttpContextAccessor();
+           
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +70,7 @@ namespace TakeOnFront
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
 
             app.UseAuthentication();
 

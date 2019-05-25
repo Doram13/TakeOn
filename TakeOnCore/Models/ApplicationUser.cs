@@ -24,7 +24,7 @@ namespace TakeOnCore.Models
         [DataType(DataType.DateTime)]
         public DateTime CreationTime { get; set; }
 
-        public ApplicationUser Peer { get; set; }
+        public virtual ApplicationUser Peer { get; set; }
 
         public ApplicationUser()
         {
