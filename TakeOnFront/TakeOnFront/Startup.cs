@@ -45,7 +45,9 @@ namespace TakeOnFront
            
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+                          
 
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 
