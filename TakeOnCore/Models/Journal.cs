@@ -26,7 +26,7 @@ namespace TakeOnCore.Models
 
         public bool IsActive { get; set; } = true;
 
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        //private readonly IHttpContextAccessor _httpContextAccessor;
 
 
 

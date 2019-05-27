@@ -29,6 +29,8 @@ namespace TakeOnFront.Controllers
         }
 
         // GET: api/Journals/5
+
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Journal>> GetJournal(int id)
         {
