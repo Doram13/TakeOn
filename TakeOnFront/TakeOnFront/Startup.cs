@@ -50,8 +50,16 @@ namespace TakeOnFront
                           
 
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options =>
+                {
+                    options.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
 
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,6 +80,13 @@ namespace TakeOnFront
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseCors(options => {
+                options.AllowAnyOrigin()
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
+
+                }
+            );
 
 
             app.UseAuthentication();
