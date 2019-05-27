@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeOnFront", "TakeOnFront\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeOnCore", "..\TakeOnCore\TakeOnCore.csproj", "{012071C4-2D4A-434B-8DB0-7CE27F877135}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeOnVue", "TakeOnVue\TakeOnVue.csproj", "{54E6DB2D-3E02-450C-B25E-C89DDF1083B5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{012071C4-2D4A-434B-8DB0-7CE27F877135}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{012071C4-2D4A-434B-8DB0-7CE27F877135}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{012071C4-2D4A-434B-8DB0-7CE27F877135}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54E6DB2D-3E02-450C-B25E-C89DDF1083B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54E6DB2D-3E02-450C-B25E-C89DDF1083B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54E6DB2D-3E02-450C-B25E-C89DDF1083B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54E6DB2D-3E02-450C-B25E-C89DDF1083B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
