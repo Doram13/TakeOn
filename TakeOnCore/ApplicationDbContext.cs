@@ -21,7 +21,7 @@ namespace TakeOnFront.Data
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Journal> Journals { get; set; }
-        public DbSet<DailyRoutine> DailyRoutines { get; set; }
+        public DbSet<Goal> Goals { get; set; }
         public DbSet<Post> Posts { get; set; }
 
         public ApplicationDbContext() { }

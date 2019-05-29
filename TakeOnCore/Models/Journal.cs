@@ -22,7 +22,7 @@ namespace TakeOnCore.Models
         [DataType(DataType.DateTime)]
         public DateTime CreatedTime { get; set; }
 
-        public virtual List<DailyRoutine> DailyRoutines { get; set; }
+        public virtual List<Goal> DailyRoutines { get; set; }
 
         public bool IsActive { get; set; } = true;
 

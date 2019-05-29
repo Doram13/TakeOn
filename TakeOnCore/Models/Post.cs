@@ -15,7 +15,7 @@ namespace TakeOnCore.Models
 
         public String Content { get;  set; }
 
-        public virtual DailyRoutine DailyRoutine { get;  set; }
+        public virtual Goal DailyRoutine { get;  set; }
 
         [DataType(DataType.Date)]
         public DateTime DestinateDate { get;  set; }

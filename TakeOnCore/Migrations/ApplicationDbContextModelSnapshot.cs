@@ -188,7 +188,7 @@ namespace TakeOnCore.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("TakeOnCore.Models.DailyRoutine", b =>
+            modelBuilder.Entity("TakeOnCore.Models.Goal", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -197,6 +197,8 @@ namespace TakeOnCore.Migrations
                     b.Property<string>("Content");
 
                     b.Property<DateTime>("CreationDate");
+
+                    b.Property<int>("GoalType");
 
                     b.Property<int?>("JournalId");
 
@@ -208,7 +210,7 @@ namespace TakeOnCore.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("DailyRoutines");
+                    b.ToTable("Goals");
                 });
 
             modelBuilder.Entity("TakeOnCore.Models.Journal", b =>
@@ -319,7 +321,7 @@ namespace TakeOnCore.Migrations
                         .HasForeignKey("PeerId");
                 });
 
-            modelBuilder.Entity("TakeOnCore.Models.DailyRoutine", b =>
+            modelBuilder.Entity("TakeOnCore.Models.Goal", b =>
                 {
                     b.HasOne("TakeOnCore.Models.Journal", "Journal")
                         .WithMany("DailyRoutines")
@@ -343,7 +345,7 @@ namespace TakeOnCore.Migrations
 
             modelBuilder.Entity("TakeOnCore.Models.Post", b =>
                 {
-                    b.HasOne("TakeOnCore.Models.DailyRoutine", "DailyRoutine")
+                    b.HasOne("TakeOnCore.Models.Goal", "DailyRoutine")
                         .WithMany("Posts")
                         .HasForeignKey("DailyRoutineId");
 

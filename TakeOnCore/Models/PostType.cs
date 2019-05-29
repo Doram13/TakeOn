@@ -7,6 +7,6 @@ namespace TakeOnCore.Models
     public enum PostType
     {
         Journal,
-        Log
+        Goal
     }
 }

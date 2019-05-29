@@ -23,16 +23,16 @@ namespace TakeOnFront.Controllers
 
         // GET: api/DailyRoutines
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DailyRoutine>>> GetDailyRoutines()
+        public async Task<ActionResult<IEnumerable<Goal>>> GetDailyRoutines()
         {
-            return await _context.DailyRoutines.ToListAsync();
+            return await _context.Goals.ToListAsync();
         }
 
         // GET: api/DailyRoutines/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<DailyRoutine>> GetDailyRoutine(int id)
+        public async Task<ActionResult<Goal>> GetDailyRoutine(int id)
         {
-            var dailyRoutine = await _context.DailyRoutines.FindAsync(id);
+            var dailyRoutine = await _context.Goals.FindAsync(id);
 
             if (dailyRoutine == null)
             {
@@ -44,7 +44,7 @@ namespace TakeOnFront.Controllers
 
         // PUT: api/DailyRoutines/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDailyRoutine(int id, DailyRoutine dailyRoutine)
+        public async Task<IActionResult> PutDailyRoutine(int id, Goal dailyRoutine)
         {
             if (id != dailyRoutine.Id)
             {
@@ -74,9 +74,9 @@ namespace TakeOnFront.Controllers
 
         // POST: api/DailyRoutines
         [HttpPost]
-        public async Task<ActionResult<DailyRoutine>> PostDailyRoutine(DailyRoutine dailyRoutine)
+        public async Task<ActionResult<Goal>> PostDailyRoutine(Goal dailyRoutine)
         {
-            _context.DailyRoutines.Add(dailyRoutine);
+            _context.Goals.Add(dailyRoutine);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetDailyRoutine", new { id = dailyRoutine.Id }, dailyRoutine);
@@ -84,15 +84,15 @@ namespace TakeOnFront.Controllers
 
         // DELETE: api/DailyRoutines/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<DailyRoutine>> DeleteDailyRoutine(int id)
+        public async Task<ActionResult<Goal>> DeleteDailyRoutine(int id)
         {
-            var dailyRoutine = await _context.DailyRoutines.FindAsync(id);
+            var dailyRoutine = await _context.Goals.FindAsync(id);
             if (dailyRoutine == null)
             {
                 return NotFound();
             }
 
-            _context.DailyRoutines.Remove(dailyRoutine);
+            _context.Goals.Remove(dailyRoutine);
             await _context.SaveChangesAsync();
 
             return dailyRoutine;
@@ -100,7 +100,7 @@ namespace TakeOnFront.Controllers
 
         private bool DailyRoutineExists(int id)
         {
-            return _context.DailyRoutines.Any(e => e.Id == id);
+            return _context.Goals.Any(e => e.Id == id);
         }
     }
 }
