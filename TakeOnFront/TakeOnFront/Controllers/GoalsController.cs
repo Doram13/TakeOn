@@ -12,46 +12,46 @@ namespace TakeOnFront.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DailyRoutinesController : ControllerBase
+    public class GoalsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public DailyRoutinesController(ApplicationDbContext context)
+        public GoalsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/DailyRoutines
+        // GET: api/Goals
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Goal>>> GetDailyRoutines()
+        public async Task<ActionResult<IEnumerable<Goal>>> GetGoals()
         {
             return await _context.Goals.ToListAsync();
         }
 
-        // GET: api/DailyRoutines/5
+        // GET: api/Goals/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Goal>> GetDailyRoutine(int id)
+        public async Task<ActionResult<Goal>> GetGoal(int id)
         {
-            var dailyRoutine = await _context.Goals.FindAsync(id);
+            var goal = await _context.Goals.FindAsync(id);
 
-            if (dailyRoutine == null)
+            if (goal == null)
             {
                 return NotFound();
             }
 
-            return dailyRoutine;
+            return goal;
         }
 
-        // PUT: api/DailyRoutines/5
+        // PUT: api/Goals/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDailyRoutine(int id, Goal dailyRoutine)
+        public async Task<IActionResult> PutGoal(int id, Goal goal)
         {
-            if (id != dailyRoutine.Id)
+            if (id != goal.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(dailyRoutine).State = EntityState.Modified;
+            _context.Entry(goal).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace TakeOnFront.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DailyRoutineExists(id))
+                if (!GoalExists(id))
                 {
                     return NotFound();
                 }
@@ -72,33 +72,33 @@ namespace TakeOnFront.Controllers
             return NoContent();
         }
 
-        // POST: api/DailyRoutines
+        // POST: api/Goals
         [HttpPost]
-        public async Task<ActionResult<Goal>> PostDailyRoutine(Goal dailyRoutine)
+        public async Task<ActionResult<Goal>> PostGoal(Goal goal)
         {
-            _context.Goals.Add(dailyRoutine);
+            _context.Goals.Add(goal);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDailyRoutine", new { id = dailyRoutine.Id }, dailyRoutine);
+            return CreatedAtAction("GetGoal", new { id = goal.Id }, goal);
         }
 
-        // DELETE: api/DailyRoutines/5
+        // DELETE: api/Goals/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Goal>> DeleteDailyRoutine(int id)
+        public async Task<ActionResult<Goal>> DeleteGoal(int id)
         {
-            var dailyRoutine = await _context.Goals.FindAsync(id);
-            if (dailyRoutine == null)
+            var goal = await _context.Goals.FindAsync(id);
+            if (goal == null)
             {
                 return NotFound();
             }
 
-            _context.Goals.Remove(dailyRoutine);
+            _context.Goals.Remove(goal);
             await _context.SaveChangesAsync();
 
-            return dailyRoutine;
+            return goal;
         }
 
-        private bool DailyRoutineExists(int id)
+        private bool GoalExists(int id)
         {
             return _context.Goals.Any(e => e.Id == id);
         }
