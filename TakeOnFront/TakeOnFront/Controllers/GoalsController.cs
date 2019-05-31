@@ -82,6 +82,16 @@ namespace TakeOnFront.Controllers
             return CreatedAtAction("GetGoal", new { id = goal.Id }, goal);
         }
 
+        // POST: api/Goals/Commitment
+        [HttpPost("Commitment")]
+        public async Task<ActionResult<Goal>> PostCommitment(Goal goal)
+        {
+            _context.Goals.Add(goal);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetGoal", new { id = goal.Id , GoalType = GoalType.Question }, goal);
+        }
+
         // DELETE: api/Goals/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Goal>> DeleteGoal(int id)
