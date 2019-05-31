@@ -27,7 +27,7 @@ namespace TakeOnFront.Data
         public ApplicationDbContext() { }
 
 
-
+        /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -36,8 +36,8 @@ namespace TakeOnFront.Data
             }
         }
 
-
-
+    */
+         
 
 
     }

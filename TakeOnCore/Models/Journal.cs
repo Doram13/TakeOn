@@ -22,11 +22,10 @@ namespace TakeOnCore.Models
         [DataType(DataType.DateTime)]
         public DateTime CreatedTime { get; set; }
 
-        public virtual List<Goal> DailyRoutines { get; set; }
+        public virtual List<Goal> Goals { get; set; }
+        public virtual List<Post> Posts { get; set; }
 
         public bool IsActive { get; set; } = true;
-
-        //private readonly IHttpContextAccessor _httpContextAccessor;
 
 
 

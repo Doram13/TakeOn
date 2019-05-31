@@ -324,7 +324,7 @@ namespace TakeOnCore.Migrations
             modelBuilder.Entity("TakeOnCore.Models.Goal", b =>
                 {
                     b.HasOne("TakeOnCore.Models.Journal", "Journal")
-                        .WithMany("DailyRoutines")
+                        .WithMany("Goals")
                         .HasForeignKey("JournalId");
 
                     b.HasOne("TakeOnCore.Models.ApplicationUser", "User")
@@ -350,7 +350,7 @@ namespace TakeOnCore.Migrations
                         .HasForeignKey("DailyRoutineId");
 
                     b.HasOne("TakeOnCore.Models.Journal", "Journal")
-                        .WithMany()
+                        .WithMany("Posts")
                         .HasForeignKey("JournalId");
 
                     b.HasOne("TakeOnCore.Models.ApplicationUser", "User")
