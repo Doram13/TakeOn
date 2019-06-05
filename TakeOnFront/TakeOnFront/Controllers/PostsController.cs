@@ -28,6 +28,14 @@ namespace TakeOnFront.Controllers
             return await _context.Posts.ToListAsync();
         }
 
+        // GET: api/Posts
+        [HttpGet("last")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetPostsDestinateOrder()
+        {
+            list
+            return await _context.Posts.ToListAsync();
+        }
+
         // GET: api/Posts/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Post>> GetPost(int id)
