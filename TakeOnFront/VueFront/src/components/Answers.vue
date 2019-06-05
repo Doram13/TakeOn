@@ -1,6 +1,10 @@
 <template>
   <div class="container-fluid">
-    <div class="m-2 p-2" v-for="answer in answers" :key="answer.content">{{ answer.content }}</div>
+    <b-input class="bg-dark text-light align-content-center" v-for="answer in answers"
+         :key="answer.id"
+         v-model="answer.content"
+         @input="answerInput(answer)">
+    </b-input>
   </div>
 </template>
 
@@ -8,6 +12,11 @@
 export default {
   name: 'Answers',
   props: ['answers'],
+  methods: {
+    answerInput(answer) {
+      this.$emit('answer-input', answer);
+    },
+  },
 };
 </script>
 

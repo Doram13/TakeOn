@@ -32,7 +32,7 @@ namespace TakeOnFront.Controllers
         [HttpGet("last")]
         public async Task<ActionResult<IEnumerable<Post>>> GetPostsDestinateOrder()
         {
-            list
+           
             return await _context.Posts.ToListAsync();
         }
 

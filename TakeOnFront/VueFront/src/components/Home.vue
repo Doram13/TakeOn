@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid d-flex h-100 flex-column" id="home_container">
+  <div class="container-fluid d-flex h-100 flex-column bg-dark text-light" id="home_container">
     <navbar :user="user"></navbar>
     <div class="row d-flex flex-fill align-items-start">
       <div class="col-sm-8"><journal :journals="journals" @journal-input="saveJournal"/></div>
@@ -8,7 +8,7 @@
     </div>
     <div class="row d-flex flex-fill align-items-center">
       <div class="col-sm-3"><questions :questions="questions"/></div>
-      <div class="col-sm-9"><answers :answers="answers"/></div>
+      <div class="col-sm-9"><answers :answers="answers" @answer-input="saveAnswer"/></div>
     </div>
     <div class="row flex-fill d-flex">
       <div class="col align-self-end">peer</div>
@@ -36,6 +36,9 @@ export default {
   methods: {
     saveJournal() {
       PostService.update(this.journals[0].id, this.journals[0]);
+    },
+    saveAnswer(answer) {
+      PostService.update(answer.id, answer);
     },
   },
   data() {

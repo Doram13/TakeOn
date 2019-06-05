@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-form-textarea
+      class="bg-dark mt-2 text-light"
       id="textarea-rows"
       v-model="journals[0].content"
       @input="input"
