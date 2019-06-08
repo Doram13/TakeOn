@@ -9,8 +9,9 @@ using System.Text;
 
 namespace TakeOnCore.Models
 {
-     public class Journal
-     {
+    public class Journal
+    {
+
         public int Id { get; set; }
 
         public virtual ApplicationUser User { get; set; }
@@ -27,11 +28,10 @@ namespace TakeOnCore.Models
 
         public bool IsActive { get; set; } = true;
 
-
-
         public Journal()
         {
             CreatedTime = DateTime.Now;
         }
+
     }
 }

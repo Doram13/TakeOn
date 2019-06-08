@@ -28,13 +28,62 @@ namespace TakeOnFront.Controllers
             return await _context.Posts.ToListAsync();
         }
 
-        // GET: api/Posts
+        // GET: api/Posts/last ??
         [HttpGet("last")]
-        public async Task<ActionResult<IEnumerable<Post>>> GetPostsDestinateOrder()
+        public async Task<ActionResult<IEnumerable<Post>>> GetPostsCreationTimeOrderDesc()
         {
-           
-            return await _context.Posts.ToListAsync();
+            return await _context.Posts.OrderByDescending(x => x.CreationTime).ToListAsync();
+        }  
+        
+        // GET: api/Posts/lastDestinate
+        [HttpGet("lastDestinate")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetPostsDestinateTimeOrderDesc()
+        {
+            return await _context.Posts.OrderByDescending(x => x.DestinateDate).ToListAsync();
         }
+
+        // GET: api/Posts
+        [HttpGet("journalPostsLasts")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetJournalPosts()
+        {
+            return await _context.Posts
+                .Where(Post => Post.PostType == PostType.Journal)
+                .OrderByDescending(time => time.CreationTime)
+                .ToListAsync();
+        }
+
+
+        [HttpGet("QuestionPostsLasts")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetQuestionPosts()
+        {
+            return await _context.Posts
+                .Where(Post => Post.PostType == PostType.Question)
+                .OrderByDescending(time => time.CreationTime)
+                .ToListAsync();
+        }
+        
+
+        [HttpGet("journalPostsDestinateLasts")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetJournalPostsDestinate()
+        {
+            return await _context.Posts
+
+                .Where(Post => Post.PostType == PostType.Journal)
+                .OrderByDescending(time => time.DestinateDate)
+                .ToListAsync();
+        }
+
+
+        [HttpGet("QuestionPostsDestinateLasts")]
+        public async Task<ActionResult<IEnumerable<Post>>> GetQuestionPostsDestinate()
+        {
+            return await _context.Posts
+                .Where(Post => Post.PostType == PostType.Question)
+                .OrderByDescending(time => time.DestinateDate)
+                .ToListAsync();
+        }
+
+
 
         // GET: api/Posts/5
         [HttpGet("{id}")]
