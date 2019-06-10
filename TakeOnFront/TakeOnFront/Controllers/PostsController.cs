@@ -14,90 +14,83 @@ namespace TakeOnFront.Controllers
     [ApiController]
     public class PostsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
 
-        public PostsController(ApplicationDbContext context)
+        private readonly IPost _postService;
+
+        public PostsController(IPost postservice)
         {
-            _context = context;
+            _postService = postservice;
+
         }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Post>>> GetPostsToday()
+        {
+            return await _postService.GetPosts();
+        }
+
 
         // GET: api/Posts
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Post>>> GetPosts()
         {
-            return await _context.Posts.ToListAsync();
+            return await _postService.GetPosts();
         }
+
+        // GET: api/Posts/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Post>> GetPost(int id)
+        {
+            return await _postService.GetPost(id);
+        }
+        
+
 
         // GET: api/Posts/last ??
         [HttpGet("last")]
         public async Task<ActionResult<IEnumerable<Post>>> GetPostsCreationTimeOrderDesc()
         {
-            return await _context.Posts.OrderByDescending(x => x.CreationTime).ToListAsync();
+            return await _postService.GetPostsCreationTimeOrderDesc();
         }  
         
         // GET: api/Posts/lastDestinate
         [HttpGet("lastDestinate")]
         public async Task<ActionResult<IEnumerable<Post>>> GetPostsDestinateTimeOrderDesc()
         {
-            return await _context.Posts.OrderByDescending(x => x.DestinateDate).ToListAsync();
+            return await _postService.GetPostsDestinateTimeOrderDesc();
         }
 
         // GET: api/Posts
         [HttpGet("journalPostsLasts")]
         public async Task<ActionResult<IEnumerable<Post>>> GetJournalPosts()
         {
-            return await _context.Posts
-                .Where(Post => Post.PostType == PostType.Journal)
-                .OrderByDescending(time => time.CreationTime)
-                .ToListAsync();
+            return await _postService.GetJournalPosts();
         }
 
 
         [HttpGet("QuestionPostsLasts")]
         public async Task<ActionResult<IEnumerable<Post>>> GetQuestionPosts()
         {
-            return await _context.Posts
-                .Where(Post => Post.PostType == PostType.Question)
-                .OrderByDescending(time => time.CreationTime)
-                .ToListAsync();
+            return await _postService.GetQuestionPosts();
         }
         
 
         [HttpGet("journalPostsDestinateLasts")]
         public async Task<ActionResult<IEnumerable<Post>>> GetJournalPostsDestinate()
         {
-            return await _context.Posts
-
-                .Where(Post => Post.PostType == PostType.Journal)
-                .OrderByDescending(time => time.DestinateDate)
-                .ToListAsync();
+            return await _postService.GetJournalPostsDestinate();
         }
 
 
         [HttpGet("QuestionPostsDestinateLasts")]
         public async Task<ActionResult<IEnumerable<Post>>> GetQuestionPostsDestinate()
         {
-            return await _context.Posts
-                .Where(Post => Post.PostType == PostType.Question)
-                .OrderByDescending(time => time.DestinateDate)
-                .ToListAsync();
+            return await _postService.GetQuestionPostsDestinate();
         }
 
 
 
-        // GET: api/Posts/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Post>> GetPost(int id)
-        {
-            var post = await _context.Posts.FindAsync(id);
 
-            if (post == null)
-            {
-                return NotFound();
-            }
-
-            return post;
-        }
 
         // PUT: api/Posts/5
         [HttpPut("{id}")]
@@ -107,12 +100,9 @@ namespace TakeOnFront.Controllers
             {
                 return BadRequest();
             }
-
-            _context.Entry(post).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _postService.PutPost(id, post);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -131,33 +121,24 @@ namespace TakeOnFront.Controllers
 
         // POST: api/Posts
         [HttpPost]
-        public async Task<ActionResult<Post>> PostPost(Post post)
+        public async Task PostPost(Post post)
         {
-            _context.Posts.Add(post);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetPost", new { id = post.Id }, post);
+            await _postService.PostPost(post);
+            //return CreatedAtAction("GetPost", new { id = post.Id }, post);
         }
 
         // DELETE: api/Posts/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Post>> DeletePost(int id)
+        public async Task DeletePost(int id)
         {
-            var post = await _context.Posts.FindAsync(id);
-            if (post == null)
-            {
-                return NotFound();
-            }
-
-            _context.Posts.Remove(post);
-            await _context.SaveChangesAsync();
-
-            return post;
+            await _postService.DeletePost(id);
         }
 
         private bool PostExists(int id)
         {
-            return _context.Posts.Any(e => e.Id == id);
+            return _postService.PostExists(id);
         }
+
+        
     }
 }

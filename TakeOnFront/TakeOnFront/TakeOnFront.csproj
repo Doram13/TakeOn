@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\TakeOnCore\TakeOnCore.csproj" />
+    <ProjectReference Include="..\TakeOnServices\TakeOnServices.csproj" />
   </ItemGroup>
 
 </Project>
