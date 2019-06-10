@@ -15,18 +15,18 @@ namespace TakeOnFront.Controllers
     public class PostsController : ControllerBase
     {
 
-        private readonly IPost _postService;
+        private readonly IPost PostService;
 
         public PostsController(IPost postservice)
         {
-            _postService = postservice;
+            PostService = postservice;
 
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Post>>> GetPostsToday()
         {
-            return await _postService.GetPosts();
+            return await PostService.GetPosts();
         }
 
 
@@ -34,14 +34,14 @@ namespace TakeOnFront.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Post>>> GetPosts()
         {
-            return await _postService.GetPosts();
+            return await PostService.GetPosts();
         }
 
         // GET: api/Posts/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Post>> GetPost(int id)
         {
-            return await _postService.GetPost(id);
+            return await PostService.GetPost(id);
         }
         
 
@@ -50,42 +50,42 @@ namespace TakeOnFront.Controllers
         [HttpGet("last")]
         public async Task<ActionResult<IEnumerable<Post>>> GetPostsCreationTimeOrderDesc()
         {
-            return await _postService.GetPostsCreationTimeOrderDesc();
+            return await PostService.GetPostsCreationTimeOrderDesc();
         }  
         
         // GET: api/Posts/lastDestinate
         [HttpGet("lastDestinate")]
         public async Task<ActionResult<IEnumerable<Post>>> GetPostsDestinateTimeOrderDesc()
         {
-            return await _postService.GetPostsDestinateTimeOrderDesc();
+            return await PostService.GetPostsDestinateTimeOrderDesc();
         }
 
         // GET: api/Posts
         [HttpGet("journalPostsLasts")]
         public async Task<ActionResult<IEnumerable<Post>>> GetJournalPosts()
         {
-            return await _postService.GetJournalPosts();
+            return await PostService.GetJournalPosts();
         }
 
 
         [HttpGet("QuestionPostsLasts")]
         public async Task<ActionResult<IEnumerable<Post>>> GetQuestionPosts()
         {
-            return await _postService.GetQuestionPosts();
+            return await PostService.GetQuestionPosts();
         }
         
 
         [HttpGet("journalPostsDestinateLasts")]
         public async Task<ActionResult<IEnumerable<Post>>> GetJournalPostsDestinate()
         {
-            return await _postService.GetJournalPostsDestinate();
+            return await PostService.GetJournalPostsDestinate();
         }
 
 
         [HttpGet("QuestionPostsDestinateLasts")]
         public async Task<ActionResult<IEnumerable<Post>>> GetQuestionPostsDestinate()
         {
-            return await _postService.GetQuestionPostsDestinate();
+            return await PostService.GetQuestionPostsDestinate();
         }
 
 
@@ -102,7 +102,7 @@ namespace TakeOnFront.Controllers
             }
             try
             {
-                await _postService.PutPost(id, post);
+                await PostService.PutPost(id, post);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -123,7 +123,7 @@ namespace TakeOnFront.Controllers
         [HttpPost]
         public async Task PostPost(Post post)
         {
-            await _postService.PostPost(post);
+            await PostService.PostPost(post);
             //return CreatedAtAction("GetPost", new { id = post.Id }, post);
         }
 
@@ -131,12 +131,12 @@ namespace TakeOnFront.Controllers
         [HttpDelete("{id}")]
         public async Task DeletePost(int id)
         {
-            await _postService.DeletePost(id);
+            await PostService.DeletePost(id);
         }
 
         private bool PostExists(int id)
         {
-            return _postService.PostExists(id);
+            return PostService.PostExists(id);
         }
 
         

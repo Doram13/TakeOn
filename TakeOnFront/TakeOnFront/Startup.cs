@@ -44,7 +44,10 @@ namespace TakeOnFront
                 (options => options.UseSqlServer(connection));
 
             services.AddHttpContextAccessor();
-           
+            services.AddScoped<IPost, PostService>();
+            services.AddScoped<IGoal, GoalService>();
+
+            //Authentication
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddDefaultTokenProviders()

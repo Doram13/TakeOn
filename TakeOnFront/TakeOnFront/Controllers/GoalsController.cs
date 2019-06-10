@@ -14,25 +14,25 @@ namespace TakeOnFront.Controllers
     [ApiController]
     public class GoalsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IGoal GoalService;
 
-        public GoalsController(ApplicationDbContext context)
+        public GoalsController(IGoal goalService)
         {
-            _context = context;
+            GoalService = goalService;
         }
 
         // GET: api/Goals
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Goal>>> GetGoals()
         {
-            return await _context.Goals.ToListAsync();
+            return await GoalService.GetGoals();
         }
 
         // GET: api/Goals/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Goal>> GetGoal(int id)
         {
-            var goal = await _context.Goals.FindAsync(id);
+            var goal = await GoalService.GetGoal(id);
 
             if (goal == null)
             {
@@ -46,29 +46,15 @@ namespace TakeOnFront.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGoal(int id, Goal goal)
         {
+            if (!GoalExists(id))
+            {
+                return NotFound();
+            }
             if (id != goal.Id)
             {
                 return BadRequest();
             }
-
-            _context.Entry(goal).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GoalExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            await GoalService.PutGoal(id, goal);
             return NoContent();
         }
 
@@ -76,9 +62,7 @@ namespace TakeOnFront.Controllers
         [HttpPost]
         public async Task<ActionResult<Goal>> PostGoal(Goal goal)
         {
-            _context.Goals.Add(goal);
-            await _context.SaveChangesAsync();
-
+            await GoalService.PostGoal(goal);
             return CreatedAtAction("GetGoal", new { id = goal.Id }, goal);
         }
 
@@ -86,31 +70,34 @@ namespace TakeOnFront.Controllers
         [HttpPost("Commitment")]
         public async Task<ActionResult<Goal>> PostCommitment(Goal goal)
         {
-            _context.Goals.Add(goal);
-            await _context.SaveChangesAsync();
+            await GoalService.PostCommitment(goal);
+            return CreatedAtAction("GetGoal", new { id = goal.Id , GoalType = GoalType.Commit }, goal);
+        }
 
-            return CreatedAtAction("GetGoal", new { id = goal.Id , GoalType = GoalType.Question }, goal);
+        // POST: api/Goals/Question
+        [HttpPost("Question")]
+        public async Task<ActionResult<Goal>> PostQuestion(Goal goal)
+        {
+            await GoalService.PostQuestion(goal);
+            return CreatedAtAction("GetGoal", new { id = goal.Id, GoalType = GoalType.Question }, goal);
         }
 
         // DELETE: api/Goals/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Goal>> DeleteGoal(int id)
         {
-            var goal = await _context.Goals.FindAsync(id);
+            var goal = await GetGoal(id);
             if (goal == null)
             {
                 return NotFound();
             }
-
-            _context.Goals.Remove(goal);
-            await _context.SaveChangesAsync();
-
+            await DeleteGoal(id);
             return goal;
         }
 
         private bool GoalExists(int id)
         {
-            return _context.Goals.Any(e => e.Id == id);
+            return GoalService.GoalExists(id);
         }
     }
 }
