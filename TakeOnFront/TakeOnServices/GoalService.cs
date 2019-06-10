@@ -11,7 +11,7 @@ using TakeOnFront.Data;
 
 namespace TakeOnServices
 {
-    class GoalService : IGoal
+    public class GoalService : IGoal
     {
 
         private readonly ApplicationDbContext _context;
