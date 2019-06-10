@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TakeOnCore.Models;
+using TakeOnFront;
+
 
 
 namespace TakeOnFront.Data

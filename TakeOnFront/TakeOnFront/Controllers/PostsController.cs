@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TakeOnCore.Models;
-using TakeOnFront.Data;
+using TakeOnCore;
+using TakeOnServices;
 
 namespace TakeOnFront.Controllers
 {

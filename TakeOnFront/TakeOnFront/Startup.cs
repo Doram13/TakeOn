@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TakeOnCore.Models;
 using TakeOnServices;
+using TakeOnCore;
 using Swashbuckle.AspNetCore.Swagger;
 
 
@@ -44,9 +45,7 @@ namespace TakeOnFront
             services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(connection));
 
-            services.AddHttpContextAccessor();
-            services.AddScoped<IPost, PostService>();
-            services.AddScoped<IGoal, GoalService>();
+
 
             //Authentication
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -70,6 +69,9 @@ namespace TakeOnFront
                            .AllowAnyHeader();
                 });
             });
+
+            services.AddScoped<IPost, PostService>();
+            services.AddScoped<IGoal, GoalService>();
 
         }
 

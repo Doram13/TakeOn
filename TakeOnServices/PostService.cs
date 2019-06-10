@@ -9,8 +9,9 @@ using TakeOnFront;
 using Microsoft.AspNetCore.Mvc;
 using TakeOnFront.Data;
 
-namespace TakeOnFront
-{
+
+namespace TakeOnServices
+{ 
     public class PostService : IPost
     {
         private readonly ApplicationDbContext _context;

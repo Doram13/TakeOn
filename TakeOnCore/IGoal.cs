@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TakeOnCore.Models;
 
-namespace TakeOnFront
+namespace TakeOnCore
 {
     public interface IGoal
     {
